@@ -1,0 +1,31 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow" style="width: 25rem;">
+    <div class="card-body p-5">
+      <h3 class="card-title text-center mb-4">Login</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="userName" class="form-label">User name</label>
+          <input type="userName" class="form-control" id="userName" formControlName="userName"
+                 [ngClass]="{ 'is-invalid': loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid }">
+          <div *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid" class="invalid-feedback">
+            Please enter a valid user name.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password"
+                 [ngClass]="{ 'is-invalid': loginForm.get('password')?.touched && loginForm.get('password')?.invalid }">
+          <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="invalid-feedback">
+            Password is required.
+          </div>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
